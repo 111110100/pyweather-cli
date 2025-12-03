@@ -1,5 +1,4 @@
 import sys
-import json
 import geopy
 from geopy.geocoders import Nominatim
 import requests
