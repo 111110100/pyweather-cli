@@ -141,9 +141,7 @@ if __name__ == "__main__":
 
     # Display
     print(f"Current weather for {location.address}:")
-    print(
-        f"Tempreture: {current['temperature']} F ({(current['temperature'] - 32) * 5 / 9:.1f} C)"
-    )
+    print(f"Tempreture: {current['temperature']} F ({(current['temperature'] - 32) * 5 / 9:.1f} C)")
     print(f"Wind speed: {current['windspeed']} mph")
     print(f"Wind direction: {deg_to_compass(current['winddirection'])}")
     print(f"Condition: {weather_description(current['weathercode'])}")
