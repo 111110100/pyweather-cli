@@ -91,12 +91,12 @@ if __name__ == "__main__":
         location = get_current_location()
 
     try:
-        geolocator = Nominatim(user_agent="Mozilla/5.0")
-        location = geolocator.geocode(location)
+        geolocator = Nominatim(user_agent="pyweather-cli")
+        location = geolocator.geocode(location, timeout=10)
         if location is None:
             print("Error: Could not find location.")
             exit(1)
-    except geopy.exc.GeocoderQueryError as err:
+    except (geopy.exc.GeocoderServiceError, geopy.exc.GeocoderQueryError) as err:
         print("Could not get location: ", err)
         exit(1)
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
     # Display
     print(f"Current weather for {location.address}:")
-    print(f"Tempreture: {current['temperature']} F ({(current['temperature'] - 32) * 5 / 9:.1f} C)")
+    print(f"Temperature: {current['temperature']} F ({(current['temperature'] - 32) * 5 / 9:.1f} C)")
     print(f"Wind speed: {current['windspeed']} mph")
     print(f"Wind direction: {deg_to_compass(current['winddirection'])}")
     print(f"Condition: {weather_description(current['weathercode'])}")
